@@ -15,6 +15,7 @@ body{
     justify-content: flex-start;
     min-height: 100vh;
 }
+
 /* Amaguem els botons de tipus radio per fer servir només els <label> visuals */
 input[type="checkbox"] {
     display: none;
@@ -24,6 +25,8 @@ input[type="checkbox"] {
     display: inline-flex;
     gap: 10px;
 }
+
+
 .toggle > span {
     font-weight: 600;
     color: #333;
@@ -32,7 +35,7 @@ input[type="checkbox"] {
 .toggle > .hidden{
     display: none;
 }
-/* Interruptor "toggle" */
+
 .toggle > .indicator{
     background: linear-gradient(to bottom, #ddd, #aaa);
     border: 1px solid #666;
@@ -48,7 +51,6 @@ input[type="checkbox"] {
     background: linear-gradient(to bottom, #ccc, #999);
 }
 
-/* Cercle indicador */
 .toggle > .indicator::after{
     background: #fff;
     border-radius: 50%;
