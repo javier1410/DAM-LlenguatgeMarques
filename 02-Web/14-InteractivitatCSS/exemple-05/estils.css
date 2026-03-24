@@ -78,11 +78,11 @@ body {
 
 /* Òrbita del coet */
 .orbit {
-    align-items: flex-start;
+    align-items: flex-start;/* si lo quito no pasa nada */
     animation: rotate 12s linear infinite;
     animation-play-state: paused;
     display: flex;
-    height: clamp(200px, calc(100% - 200px), 100%);
+    height: clamp(200px, calc(100% - 200px), 100%);  /* clamp(min, valor ideal, max) elige un valor entre un mínimo y un máximo */
     justify-content: center;
     width: clamp(200px, calc(100% - 200px), 100%);
     z-index: 1;
@@ -114,29 +114,42 @@ body {
 
 /* Interruptor "Toggle" */
 .toggle {
-    --h: 26px;
-    --knob: calc(var(--h) - var(--pad)*2);
-    --pad: 3px;
-    --w: 48px;
+    /* ===== VARIABLES ===== */
+    --h: 26px; /* altura total del toggle */
+    --pad: 3px; /* espacio interno */
+    --knob: calc(var(--h) - var(--pad)*2); 
+    /* tamaño del circulito (alto menos padding arriba y abajo) */
+    --w: 48px; /* ancho total del toggle */
 
-    -webkit-backdrop-filter: blur(4px);
-    align-items: center;
-    backdrop-filter: blur(4px);
-    background: rgba(255,255,255,0.2);
-    border-radius: 999px;
-    bottom: 20px;
-    display: inline-flex;
-    gap: 10px;
-    justify-content: center;
-    left: 50%;
-    padding: 8px 14px;
-    position: fixed;
-    transform: translateX(-50%);
-    user-select: none;
-    z-index: 10;
+    /* ===== EFECTO VISUAL (glass) ===== */
+    -webkit-backdrop-filter: blur(4px); /* blur para Safari */
+    backdrop-filter: blur(4px); /* desenfoque del fondo */
+    background: rgba(255,255,255,0.2); /* fondo semitransparente */
+    border-radius: 999px; /* forma redondeada tipo píldora */
+
+    /* ===== POSICIONAMIENTO ===== */
+    position: fixed; /* fijo en pantalla */
+    bottom: 20px; /* separado 20px del fondo */
+    left: 50%; /* centrado horizontalmente */
+    transform: translateX(-50%); /* ajuste fino para centrar */
+
+    /* ===== FLEXBOX ===== */
+    display: inline-flex; /* inline + flex */
+    align-items: center; /* centra verticalmente contenido */
+    justify-content: center; /* centra horizontalmente */
+    gap: 10px; /* espacio entre elementos internos */
+
+    /* ===== ESPACIADO ===== */
+    padding: 8px 14px; /* espacio interno del toggle */
+
+    /* ===== UX ===== */
+    user-select: none; /* evita seleccionar texto */
+
+    /* ===== CAPAS ===== */
+    z-index: 10; /* se muestra por encima de otros elementos */
 }
+/* Input ocult seleccionar hijos directos y con el tipo typebbox */ 
 
-/* Input ocult */
 .toggle > input[type="checkbox"] {
     display: none;
 }
@@ -146,7 +159,7 @@ body {
     align-items: center;
     color: #fff;
     cursor: pointer;
-    display: inline-flex;
+    display: inline-flex; /* se comporta como una linea como un span */
     font-weight: 600;
     gap: 10px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);

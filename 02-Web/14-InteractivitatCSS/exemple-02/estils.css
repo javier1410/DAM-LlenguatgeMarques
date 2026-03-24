@@ -1,95 +1,98 @@
-/* ─── FONS ─── */
+/* ─── FONS (BODY) ─── */
 body {
-  align-items: center;
-  background: linear-gradient(135deg, #e9f0ff, #eef2f7);
-  display: flex;
-  font-family: system-ui, sans-serif;
-  justify-content: center;
-  margin: 0;
-  min-height: 100vh;
+  display: flex; /* activa flexbox */
+  justify-content: center; /* centra horizontal */
+  align-items: center; /* centra vertical */
+  min-height: 100vh; /* altura mínima pantalla */
+  margin: 0; /* elimina márgenes */
+  font-family: system-ui, sans-serif; /* fuente */
+  background: linear-gradient(135deg, #e9f0ff, #eef2f7); /* fondo degradado */
 }
 
-/* ─── CONTENIDOR ─── */
+/* ─── CONTENIDOR GENERAL ─── */
 .gallery {
-  display: flex;
-  gap: 40px;
-  perspective: 1000px;
+  display: flex; /* coloca tarjetas en fila */
+  gap: 40px; /* espacio entre tarjetas */
+  perspective: 1000px; /* profundidad para efecto 3D */
 }
 
-/* Cada targeta és un label contenidor (clickable) */
+/* ─── WRAPPER CLICKABLE ─── */
 .cardwrap {
-  display: block;
-  cursor: pointer;
+  display: block; /* bloque */
+  cursor: pointer; /* cursor tipo mano */
 }
 
-/* ─── TOGGLE AMAGAT ─── */
+/* ─── CHECKBOX OCULTO ─── */
 .flip {
-  display: none;
+  display: none; /* oculta el checkbox */
 }
 
-/* ─── TARGETA ─── */
+/* ─── TARJETA ─── */
 .card {
-  height: 320px;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-  will-change: transform;
-  width: 240px;
+  width: 240px; /* ancho */
+  height: 320px; /* alto */
+  position: relative; /* referencia para hijos */
+  transform-style: preserve-3d; /* mantiene efecto 3D */
+  transition: transform 0.6s ease; /* animación suave */
+  will-change: transform; /* optimización */
 }
 
-/* Cara frontal i posterior */
+/* ─── CARAS (FRONT Y BACK) ─── */
 .front,
 .back {
-  align-items: center;
-  backface-visibility: hidden;
-  display: flex;
-  inset: 0;
-  justify-content: center;
-  position: absolute;
+  position: absolute; /* se superponen */
+  inset: 0; /* ocupan todo el contenedor */
+  display: flex; /* flexbox */
+  justify-content: center; /* centra horizontal */
+  align-items: center; /* centra vertical */
+  backface-visibility: hidden; /* oculta cara trasera */
 }
 
+/* cara trasera girada */
 .back {
   transform: rotateY(180deg);
 }
 
-/* ─── ESTIL POLAROID ─── */
+/* ─── ESTILO POLAROID ─── */
 .polaroid {
-  background: #fff;
-  border-radius: 10px;
-  box-sizing: border-box;
-  height: 100%;
-  padding: 16px 16px 40px;
-  position: relative;
-  transition: box-shadow 0.3s ease;
   width: 100%;
+  height: 100%;
+  background: #fff; /* fondo blanco */
+  border-radius: 10px; /* bordes redondeados */
+  padding: 16px 16px 40px; /* espacio interno */
+  box-sizing: border-box; /* incluye padding en tamaño */
+  position: relative; /* para posicionar caption */
+  transition: box-shadow 0.3s ease; /* animación sombra */
 }
 
-/* Revers amb degradat sèpia */
+/* reverso con color distinto */
 .back .polaroid {
   background: linear-gradient(-15deg, #faf7e3, #d7ca99);
 }
 
-/* Foto i llegenda */
+/* ─── FOTO ─── */
 .photo {
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 8px; /* bordes suaves */
 }
 
+/* ─── TEXTO ─── */
 .caption {
-  bottom: 12px;
-  color: #333;
-  font-weight: 600;
+  position: absolute; /* posicion dentro del polaroid */
+  bottom: 12px; /* abajo */
   left: 0;
-  position: absolute;
   right: 0;
-  text-align: center;
+  text-align: center; /* centrado */
+  color: #333; /* color */
+  font-weight: 600; /* grosor */
 }
 
-/* Gradients específics per cada foto (noms renombrats) */
+/* ─── COLORES DE EJEMPLO ─── */
 .frontCard1 .photo {
   background: linear-gradient(135deg, #3d7bff, #0053d6);
 }
+
 .backCard1 .photo {
   background: linear-gradient(135deg, #ff914a, #ff4a62);
 }
@@ -97,24 +100,26 @@ body {
 .frontCard2 .photo {
   background: linear-gradient(135deg, #ffcc33, #ffaa00);
 }
+
 .backCard2 .photo {
   background: linear-gradient(135deg, #9c27b0, #6a1b9a);
 }
 
-/* ─── EFECTE HOVER ─── */
+/* ─── EFECTO HOVER ─── */
 .cardwrap:hover .card {
-  transform: scale(1.03) rotateZ(-1deg);
+  transform: scale(1.03) rotateZ(-1deg); /* pequeño zoom + inclinación */
 }
+
 .cardwrap:hover .polaroid {
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24); /* sombra */
 }
 
-/* ─── GIR DE LA TARGETA (GENÈRIC amb :has) ─── */
+/* ─── GIRO DE LA TARJETA ─── */
 .cardwrap:has(.flip:checked) .card {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); /* gira la tarjeta */
 }
 
-/* Mantenir l'efecte hover quan està girada */
+/* ─── HOVER CUANDO ESTÁ GIRADA ─── */
 .cardwrap:has(.flip:checked):hover .card {
   transform: rotateY(180deg) scale(1.03) rotateZ(-1deg);
 }
